@@ -266,27 +266,14 @@ GameObject:
   - component: {fileID: 487654538}
   - component: {fileID: 487654537}
   - component: {fileID: 487654536}
-  - component: {fileID: 487654535}
+  - component: {fileID: 487654541}
   m_Layer: 0
   m_Name: 'Box : testRaycast'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &487654535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487654534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce368aac59ac4d74e87049e93a38245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  box: {fileID: 487654536}
+  m_IsActive: 1
 --- !u!54 &487654536
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -381,6 +368,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487654541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487654534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a0df140b428cb48b36ac2b65fbee40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box: {fileID: 487654536}
 --- !u!1 &676514256
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +801,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6f22dbc89e30c4a8187cf939f247f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerHead: {fileID: 0}
+  _keyConfig: {fileID: 0}
+  _groundChecker: {fileID: 0}
+  _playerKey: {fileID: 0}
+  _mouseInput: {fileID: 0}
+  _playerLook: {fileID: 0}
+  _playerWalk: {fileID: 0}
+  _playerDash: {fileID: 0}
+  _playerJump: {fileID: 0}
+  _playerSliding: {fileID: 0}
+  _playerDoubleJump: {fileID: 0}
+  _playerLeftWallrunning: {fileID: 0}
+  _playerRightWallrunning: {fileID: 0}
 --- !u!114 &990801985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +859,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01707434d81d47449e595fafd049029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerHead: {fileID: 0}
+  _keyConfig: {fileID: 0}
+  _groundChecker: {fileID: 0}
+  _playerKey: {fileID: 0}
+  _mouseInput: {fileID: 0}
+  _playerLook: {fileID: 0}
+  _playerWalk: {fileID: 0}
+  _playerDash: {fileID: 0}
+  _playerJump: {fileID: 0}
+  _playerSliding: {fileID: 0}
+  _playerDoubleJump: {fileID: 0}
+  _playerLeftWallrunning: {fileID: 0}
+  _playerRightWallrunning: {fileID: 0}
+  xRotation: 0
+  yRotation: 0
 --- !u!114 &990801988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,6 +888,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e16fdbdfeca014c91bcfdc947c3a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerHead: {fileID: 0}
+  _keyConfig: {fileID: 0}
+  _groundChecker: {fileID: 0}
+  _playerKey: {fileID: 0}
+  _mouseInput: {fileID: 0}
+  _playerLook: {fileID: 0}
+  _playerWalk: {fileID: 0}
+  _playerDash: {fileID: 0}
+  _playerJump: {fileID: 0}
+  _playerSliding: {fileID: 0}
+  _playerDoubleJump: {fileID: 0}
+  _playerLeftWallrunning: {fileID: 0}
+  _playerRightWallrunning: {fileID: 0}
   mouseInputEnabled: 0
   mouseX: 0
   mouseY: 0
@@ -871,6 +918,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd964c5d6ec0244692607ca37fd06ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerHead: {fileID: 0}
+  _keyConfig: {fileID: 0}
+  _groundChecker: {fileID: 0}
+  _playerKey: {fileID: 0}
+  _mouseInput: {fileID: 0}
+  _playerLook: {fileID: 0}
+  _playerWalk: {fileID: 0}
+  _playerDash: {fileID: 0}
+  _playerJump: {fileID: 0}
+  _playerSliding: {fileID: 0}
+  _playerDoubleJump: {fileID: 0}
+  _playerLeftWallrunning: {fileID: 0}
+  _playerRightWallrunning: {fileID: 0}
   mouseInputEnabled: 0
   mouseX: 0
   mouseY: 0
@@ -886,6 +948,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cb964f65f1f5e4eaefd24eafe076aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerHead: {fileID: 0}
+  _keyConfig: {fileID: 0}
+  _groundChecker: {fileID: 0}
+  _playerKey: {fileID: 0}
+  _mouseInput: {fileID: 0}
+  _playerLook: {fileID: 0}
+  _playerWalk: {fileID: 0}
+  _playerDash: {fileID: 0}
+  _playerJump: {fileID: 0}
+  _playerSliding: {fileID: 0}
+  _playerDoubleJump: {fileID: 0}
+  _playerLeftWallrunning: {fileID: 0}
+  _playerRightWallrunning: {fileID: 0}
 --- !u!114 &990801991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,6 +975,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90426e90c7408e3469546aec96f6bcab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBody: {fileID: 0}
+  playerCamera: {fileID: 0}
+  playerHead: {fileID: 0}
+  _keyConfig: {fileID: 0}
+  _groundChecker: {fileID: 0}
+  _playerKey: {fileID: 0}
+  _mouseInput: {fileID: 0}
+  _playerLook: {fileID: 0}
+  _playerWalk: {fileID: 0}
+  _playerDash: {fileID: 0}
+  _playerJump: {fileID: 0}
+  _playerSliding: {fileID: 0}
+  _playerDoubleJump: {fileID: 0}
+  _playerLeftWallrunning: {fileID: 0}
+  _playerRightWallrunning: {fileID: 0}
   keyX: 0
   keyY: 0
 --- !u!1 &1353225201 stripped
