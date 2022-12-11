@@ -16,6 +16,7 @@ namespace SHADOWFALL
         private void Awake()
         {
             _movementController = GetComponent<MovementController> ();
+            _movementController.Initialize();
         }
 
         private void Start()
@@ -25,7 +26,7 @@ namespace SHADOWFALL
 
         private void Update()
         {
-            
+            _movementController.onUpdate();
         }
 
         private void FixedUpdate()

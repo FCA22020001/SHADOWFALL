@@ -24,7 +24,7 @@ namespace SHADOWFALL
         protected LeftRaycast LeftRaycast;
         #endregion
 
-        #region Collision programs
+        #region Collision Based programs
         // All collision programs are executed by child programs that inherit PlayerStatusController depending on the situation.
         private void OnCollisionEnter(Collision collision)
         {

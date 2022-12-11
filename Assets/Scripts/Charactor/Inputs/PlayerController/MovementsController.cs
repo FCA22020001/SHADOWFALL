@@ -18,17 +18,20 @@ namespace SHADOWFALL
         #region Configulation scripts
         // Player's key/mouse configulation
         protected KeyConfig _playerKeyConfig;
+        // Player status variables scripts
+        // public PlayerStatus _playerStatus;
+        protected PlayerStatus _playerStatus = new PlayerStatus();
         #endregion
 
         // If you use these variables, you must set protected.
         // If you create children scripts, you must use in inheritance MovementController.
         // These variables use in children scripts.
         #region Movement scripts
-        // Player status variables scripts
-        protected PlayerStatus _playerStatus;
         // Movement horizontal/vertical input
         protected HorizontalInput _playerKeyHorizontal;
         protected VerticalInput _playerKeyVertical;
+        // Walking
+        protected Walk _playerWalk;
         #endregion
         #region Look scripts
         // Look around
@@ -39,15 +42,15 @@ namespace SHADOWFALL
         #endregion
 
 
-        public void Initialize(PlayerStatus playerStatus)
+        public void Initialize()
         {
-            _playerStatus = playerStatus;
             getComponents();
             getScripts();
         }
         public void onUpdate()
         {
             Look();
+            Movement();
         }
 
 
@@ -69,6 +72,9 @@ namespace SHADOWFALL
 
             // Get normal movement scripts.
             _playerLook = GetComponent<Look>();
+
+            // Get movement scripts.
+            _playerWalk = GetComponent<Walk>();
         }
 
 
@@ -80,32 +86,32 @@ namespace SHADOWFALL
         private void Movement()
         {
             // Keyboard input enable.
-            //if (_playerStatus.keyboardInputEnables == true)
-            //{
-            // Walking
-            //if (_playerStatus.walking == true && _playerStatus.running == false) _playerWalk.playerWalk();
+            if (_playerStatus.keboardInputEnables == true)
+            {
+                // Walking
+                if (_playerStatus.walking == true && _playerStatus.running == false) _playerWalk.playerWalk();
 
-            // Running
-            // if (_playerStatus.walking == false && _playerStatus.running == true) _playerDash.playerDash();
+                // Running
+                // if (_playerStatus.walking == false && _playerStatus.running == true) _playerDash.playerDash();
 
-            // Jumping
-            // if (_playerStatus.grounded == true) _playerJump.playerJump();
+                // Jumping
+                // if (_playerStatus.grounded == true) _playerJump.playerJump();
 
-            // Crouching
-            // if (_playerStatus.walking == true && _playerStatus.running == false) _playerCrouch.playerCrouch();
+                // Crouching
+                // if (_playerStatus.walking == true && _playerStatus.running == false) _playerCrouch.playerCrouch();
 
-            // Sliding
-            // if (_playerStatus.walking == false && _playerStatus.running == true) _playerSliding.playerSliding();
+                // Sliding
+                // if (_playerStatus.walking == false && _playerStatus.running == true) _playerSliding.playerSliding();
 
-            // Double jump
-            // if (_playerStatus.grounded == false && _playerStatus.candoubleJump == true) _playerDoubleJump.playerDoubleJump();
+                // Double jump
+                // if (_playerStatus.grounded == false && _playerStatus.candoubleJump == true) _playerDoubleJump.playerDoubleJump();
 
-            // Wall running
-            // if (_playerStatus.grounded == false && _playerStatus.wallrunning == true){
-            //     if (_playerStatus.isLeftWall == true) _playerWallrunLeft.playerWallrunLeft();
-            //     if (_playerStatus.isRightWall == true) _playerWallrunRight.playerWallrunRight();
-            // }
-            //}
+                // Wall running
+                // if (_playerStatus.grounded == false && _playerStatus.wallrunning == true){
+                //     if (_playerStatus.isLeftWall == true) _playerWallrunLeft.playerWallrunLeft();
+                //     if (_playerStatus.isRightWall == true) _playerWallrunRight.playerWallrunRight();
+                // }
+            }
         }
     }
 }
