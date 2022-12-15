@@ -92,7 +92,7 @@ namespace SHADOWFALL
                 if (_playerStatus.walking == true && _playerStatus.running == false) _playerWalk.playerWalk();
 
                 // Running
-                // if (_playerStatus.walking == false && _playerStatus.running == true) _playerDash.playerDash();
+                // if (_playerStatus.walking == false && _playerStatus.running == true) _playerRun.playerRun();
 
                 // Jumping
                 // if (_playerStatus.grounded == true) _playerJump.playerJump();

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SHADOWFALL
-{   
-    public class Walk : MovementController
+{
+    public class Run : MovementController
     {
-        public void playerWalk()
+        public void playerRun()
         {
             // Get horizontal and vertical input.
             _playerKeyHorizontal.playerHorizontalInput();
@@ -16,7 +16,7 @@ namespace SHADOWFALL
             Vector3 move = transform.right * _playerKeyVertical.keyX + transform.forward * _playerKeyHorizontal.keyY;
 
             // Apply force.
-            _playerBody.AddForce(move * _playerStatus.walkSpeed, ForceMode.Force);
+            _playerBody.AddForce(move * _playerStatus.runSpeed, ForceMode.Force);
         }
     }
 }

@@ -10,13 +10,16 @@ namespace SHADOWFALL
         public Transform playerHead;
 
         // Player movement core variables.
-        public const float walkSpeed = 5f;
-        public const float runSpeed = 8f;
+        public float crouchSpeed = 3f;
+        public float walkSpeed = 5f;
+        public float runSpeed = 8f;
+        public float jumpForce = 137.5f;
         public float nowAllowSpeed;
 
         // Player input status.
         public bool keboardInputEnables;
         public bool mouseInputEnables;
+        public bool runningKeySwitch;
 
         // Player default status.
         public bool isGrounded;
