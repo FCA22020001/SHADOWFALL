@@ -129,5 +129,9 @@ namespace SHADOWFALL
             if (_playerStatus.isGrounded == false) LeftRaycast.underRaycastShoot();
         }
         #endregion
+
+        #region Input status manager
+        public float moveStatusAllow;
+        #endregion
     }
 }

@@ -16,7 +16,7 @@ namespace SHADOWFALL
             Vector3 move = transform.right * _playerKeyVertical.keyX + transform.forward * _playerKeyHorizontal.keyY;
 
             // Apply force.
-            _playerBody.AddForce(move * _playerStatus.walkSpeed, ForceMode.Force);
+            _playerBody.AddForce(move.normalized * _playerStatus.walkSpeed, ForceMode.Force);
         }
     }
 }
