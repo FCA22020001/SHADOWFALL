@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace SHADOWFALL
 {
-    public class Jump : MovementController
+    public class DoubleJump : MovementController
     {
-        public void playerJump()
+        public void playerDoubleJump()
         {
             // Apply force
             _playerBody.AddForce(Vector3.up * _playerStatus.jumpForce, ForceMode.Impulse);

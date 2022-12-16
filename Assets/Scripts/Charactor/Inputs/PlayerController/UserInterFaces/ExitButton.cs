@@ -8,7 +8,7 @@ namespace SHADOWFALL
     public class ExitButton : MonoBehaviour
     {
         [SerializeField] private GameObject exitButton;
-        [SerializeField]private float buttonStats;
+        [SerializeField] private int buttonStats;
 
         public void Start()
         {
@@ -20,22 +20,22 @@ namespace SHADOWFALL
             if (Input.GetKeyDown(KeyCode.Escape) && buttonStats == 0)
             {
                 summonExitButton();
-                buttonStats = 1;
+                buttonStats += 1;
             }
             if (Input.GetKeyDown(KeyCode.Escape) && buttonStats == 1)
             {
                 desummonExitButton();
-                buttonStats = 0;
+                buttonStats -= 1;
             }
         }
         private void summonExitButton()
         {
-            exitButton.SetActive(true);
+            exitButton.gameObject.SetActive(true);
         }
 
         private void desummonExitButton()
         {
-            exitButton.SetActive(false);
+            exitButton.gameObject.SetActive(false);
         }
 
         public void OnClickExitButton()

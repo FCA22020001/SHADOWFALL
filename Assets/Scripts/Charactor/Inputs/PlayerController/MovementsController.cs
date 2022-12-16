@@ -88,29 +88,9 @@ namespace SHADOWFALL
             // Keyboard input enable.
             if (_playerStatus.keboardInputEnables == true)
             {
-                // Walking
-                if (_playerStatus.walking == true && _playerStatus.running == false) _playerWalk.playerWalk();
-
-                // Running
-                // if (_playerStatus.walking == false && _playerStatus.running == true) _playerRun.playerRun();
-
-                // Jumping
-                // if (_playerStatus.grounded == true) _playerJump.playerJump();
-
-                // Crouching
-                // if (_playerStatus.walking == true && _playerStatus.running == false) _playerCrouch.playerCrouch();
-
-                // Sliding
-                // if (_playerStatus.walking == false && _playerStatus.running == true) _playerSliding.playerSliding();
-
-                // Double jump
-                // if (_playerStatus.grounded == false && _playerStatus.candoubleJump == true) _playerDoubleJump.playerDoubleJump();
-
-                // Wall running
-                // if (_playerStatus.grounded == false && _playerStatus.wallrunning == true){
-                //     if (_playerStatus.isLeftWall == true) _playerWallrunLeft.playerWallrunLeft();
-                //     if (_playerStatus.isRightWall == true) _playerWallrunRight.playerWallrunRight();
-                // }
+                ///<Summary>
+                ///  
+                ///</Summary>
             }
         }
     }
