@@ -56,7 +56,10 @@ namespace SHADOWFALL
             /// _playerStatus.canWalljump = true;
             /// The program to change the state of isRightWall is Raycasts/RightRay.cs.
             /// </summary>
-            if (collision.transform.CompareTag("runableWall") && _playerStatus.rightwall == true) Enter.enterRightWall();
+            if (collision.transform.CompareTag("runableWall") && _playerStatus.rightwall == true)
+            {
+                Enter.enterRightWall();
+            }
         }
 
         private void OnCollisionStay(Collision collision)
@@ -67,7 +70,10 @@ namespace SHADOWFALL
             /// _playerStatus.grounded = true;
             /// _playerStatus.canJump = true;
             /// </summary>
-            if (collision.transform.CompareTag("ground")) Stay.stayGround();
+            if (collision.transform.CompareTag("ground"))
+            {
+                Stay.stayGround();
+            }
             /// <summary> Stay left wall
             /// If player is collision stay on "runableWall".
             /// _playerStatus.isRightWall = false;
@@ -75,7 +81,10 @@ namespace SHADOWFALL
             /// _playerStatus.wallrunning = true;
             /// The program to change the state of isLeftWall is Raycasts/LeftRay.cs.
             /// </summary>
-            if (collision.transform.CompareTag("runableWall") && _playerStatus.leftwall == true) Stay.stayLeftWall();
+            if (collision.transform.CompareTag("runableWall") && _playerStatus.leftwall == true)
+            {
+                Stay.stayLeftWall();
+            }
             /// <summary> Stay right wall
             /// If player is collision stay on "runableWall".
             /// _playerStatus.isLeftWall = false;
@@ -83,7 +92,10 @@ namespace SHADOWFALL
             /// _playerStatus.wallrunning = true;
             /// The program to change the state of isRightWall is Raycasts/RightRay.cs.
             /// </summary>
-            if (collision.transform.CompareTag("runableWall") && _playerStatus.rightwall == true) Stay.stayRightWall();
+            if (collision.transform.CompareTag("runableWall") && _playerStatus.rightwall == true)
+            {
+                Stay.stayRightWall();
+            }
         }
 
         private void OnCollisionExit(Collision collision)
@@ -95,7 +107,11 @@ namespace SHADOWFALL
             /// _playerStstus.canJump = false;
             /// _playerStatus.candoubleJump = true;
             /// </summary>
-            if (collision.transform.CompareTag("ground")) Exit.exitGround(); LeftRay();
+            if (collision.transform.CompareTag("ground"))
+            {
+                Exit.exitGround();
+                LeftRay();
+            }
             /// <summary> Exit from left wall.
             /// If player is collision exit from "runableWall".
             /// Set player status.
@@ -105,7 +121,10 @@ namespace SHADOWFALL
             /// _playerStatus.wallrunning = false;
             /// _playerStatus.candoubleJump = true;
             /// </summary>
-            if (collision.transform.CompareTag("runableWall") && _playerStatus.leftwall == false) Exit.exitLeftWall();
+            if (collision.transform.CompareTag("runableWall") && _playerStatus.leftwall == false)
+            {
+                Exit.exitLeftWall();
+            }
             /// <summary> Exit from right wall.
             /// If player is collision exit from "runableWall".
             /// Set player status.
@@ -115,7 +134,10 @@ namespace SHADOWFALL
             /// _playerStatus.wallrunning = false;
             /// _playerStatus.candoubleJump = true;
             /// </summary>
-            if (collision.transform.CompareTag("runableWall") && _playerStatus.rightwall == false) Exit.exitRightWall();
+            if (collision.transform.CompareTag("runableWall") && _playerStatus.rightwall == false)
+            {
+                Exit.exitRightWall();
+            }
         }
         #endregion
 
@@ -126,7 +148,7 @@ namespace SHADOWFALL
         /// </summary>
         private void LeftRay()
         {
-            if (_playerStatus.isGrounded == false) LeftRaycast.underRaycastShoot();
+            if (_playerStatus.isGrounded == false) LeftRaycast.leftRaycastShoot();
         }
         #endregion
 

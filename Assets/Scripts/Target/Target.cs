@@ -6,17 +6,20 @@ namespace SHADOWFALL
 {
     public class Target : MonoBehaviour
     {
-        [Header("ターゲット")]
+        [Header("Target plate object")]
         protected GameObject targetPlate;
 
-        [Header("オーディオソース")]
+        [Header("Audio")]
         protected AudioClip hitTargetSound;
         protected AudioSource audioSource;
 
-        [Header("スコア")]
+        [Header("Score number")]
         protected int hitScore;
+        protected int cyanHitScore = 2;
+        protected int blueHitScore = 5;
+        protected int greenHitScore = 7;
 
-        [Header("プログラム")]
+        [Header("Scripts")]
         protected TargetHitColor _targetHitColor;
         protected CyanTargetHit _cyanTargetHit;
         protected BlueTargetHit _blueTargetHit;
@@ -42,6 +45,7 @@ namespace SHADOWFALL
 
         public void hitBullet()
         {
+            // If bullet is enter the target, check target's color and caluculate hitScore.
             if (targetPlate.GetComponent<Renderer>().material.color == Color.cyan) _cyanTargetHit.TargetHit();
             if (targetPlate.GetComponent<Renderer>().material.color == Color.blue) _blueTargetHit.TargetHit();
             if (targetPlate.GetComponent<Renderer>().material.color == Color.green) _greenTargetHit.TargetHit();

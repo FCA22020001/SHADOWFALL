@@ -11,7 +11,7 @@ namespace SHADOWFALL
 
         private RaycastHit playerLeftRay;
 
-        public void underRaycastShoot()
+        public void leftRaycastShoot()
         {
             if (Physics.Raycast(_playerStatus.playerHead.transform.position, -_playerStatus.playerHead.transform.right, out playerLeftRay))
                 distanceFromLeftHit = Vector3.Distance(_playerStatus.playerHead.transform.position, playerLeftRay.point);

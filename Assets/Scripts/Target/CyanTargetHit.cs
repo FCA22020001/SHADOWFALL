@@ -9,7 +9,7 @@ namespace SHADOWFALL
         public void TargetHit()
         {
             // Add hit score
-            hitScore += 2;
+            hitScore += cyanHitScore;
 
             // Player hit sudio
             audioSource.PlayOneShot(hitTargetSound);
