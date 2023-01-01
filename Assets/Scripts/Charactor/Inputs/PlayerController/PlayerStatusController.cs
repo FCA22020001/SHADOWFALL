@@ -4,6 +4,57 @@ using UnityEngine;
 
 namespace SHADOWFALL
 {
+    public class PlayerStatusController : MonoBehaviour
+    {
+        // Get status variables
+        protected PlayerStatus _playerStatus = new PlayerStatus();
+
+        // Raycast scripts
+        protected playerUnderRay _playerUnderRay;
+        protected playerForwordRay _playerForwordRay;
+        protected playerBackwordRay _playerBackwordRay;
+        protected playerLeftRay _playerLeftRay;
+        protected playerRightRay _playerRightRay;
+
+        // Player body
+        protected Rigidbody rb;
+        protected Transform _playerHead;
+        protected Transform _playerFoot;
+
+        // Raycast hit distance from hit position
+        public float underRayhitDistance;
+        public float forwordRayhitDistance;
+        public float backwordRayhitDistance;
+        public float leftRayhitDistance;
+        public float rightRayhitDistance;
+
+        #region Unity voiding space.
+        public void Awake(){
+            // Get raycast programs
+            _playerUnderRay = GetComponent<playerUnderRay>();
+            _playerForwordRay = GetComponent<playerForwordRay>();
+            _playerBackwordRay = GetComponent<playerBackwordRay>();
+            _playerLeftRay = GetComponent<playerLeftRay>();
+            _playerRightRay = GetComponent<playerRightRay>();
+        }
+        public void Start(){
+            // get rigidbody
+            rb = GetComponent<Rigidbody>();
+        }
+        public void Update(){
+            //
+        }
+        public void FixedUpdate(){
+            //
+        }
+        #endregion
+    }
+}
+
+#region Old Status Controller
+/*
+namespace SHADOWFALL
+{
     // This script must be run independently.
     // This is because changing it within a PlayerMovementController will cause it to get mixed up.
     // Click here to see the structure of the script.
@@ -157,3 +208,5 @@ namespace SHADOWFALL
         #endregion
     }
 }
+*/
+#endregion
