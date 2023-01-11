@@ -1,0 +1,22 @@
+Location: ~\Editor\Data\Resources\ScriptTemplates\81-C#Script-NewBehaviorScript.cs.txt
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+    #ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Start script
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Update script
+    }
+}
+#ROOTNAMESPACEEND#
