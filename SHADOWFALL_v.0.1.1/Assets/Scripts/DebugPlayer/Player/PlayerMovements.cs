@@ -61,8 +61,8 @@ namespace SHADOWFALL
         public void onStart()
         {
             //Debug.Log("Loading scripts...");
-            PlayerMouseInputEnable();
-            PlayerKeyInputEnable();
+            //PlayerMouseInputEnable();
+            //PlayerKeyInputEnable();
             LockCoursor();
         }
         public void onUpdate()

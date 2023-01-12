@@ -23,6 +23,8 @@ namespace SHADOWFALL
         private AudioSource audioSource;
         [SerializeField] private AudioClip fireSound;
 
+        protected PlayerStatus STATUS = new PlayerStatus();
+
         void Start()
         {
             audioSource = gameObject.GetComponent<AudioSource>();
@@ -41,12 +43,19 @@ namespace SHADOWFALL
                 if(Physics.Raycast(head.transform.position, head.transform.forward, out FireRayHit, 1000))
                 {
                     rayHitObject = FireRayHit.collider.gameObject;
-                    Debug.Log("Target object : " + rayHitObject);
+                    //Debug.Log("Target object : " + rayHitObject);
                 }
                 else
                 {
                     rayHitObject = null;
                 }
+
+                if (rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == false)
+                {
+                    STATUS.score += 1;
+                }
+
+                //Debug.Log(" Score : " + STATUS.score);
             }
         }
     }

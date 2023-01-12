@@ -22,4 +22,6 @@ public class PlayerStatus
 
     public bool running;
     public bool doubleJump;
+
+    public int score;
 }

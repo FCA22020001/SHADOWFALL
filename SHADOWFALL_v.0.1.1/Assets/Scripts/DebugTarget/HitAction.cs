@@ -20,9 +20,16 @@ namespace SHADOWFALL
 
         [Header("Script")]
         [SerializeField] private GunFire fire;
+
+        [Header("Object status")]
+        [SerializeField] public bool hit;
+
+        protected PlayerStatus STATUS = new PlayerStatus();
+
         void Start()
         {
             Target = this.gameObject;
+            hit = false;
         }
 
         void Update()
@@ -35,6 +42,7 @@ namespace SHADOWFALL
             if (Target == fire.rayHitObject)
             {
                 this.GetComponent<Renderer>().material.color = Color.red;
+                hit = true;
             }
         }
     }
