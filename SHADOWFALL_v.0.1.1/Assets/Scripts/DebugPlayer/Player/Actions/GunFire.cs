@@ -17,7 +17,10 @@ namespace SHADOWFALL
     {
         [SerializeField] private Transform head;
         private RaycastHit FireRayHit;
+
+        [Header("Objects")]
         [SerializeField] public GameObject rayHitObject;
+        [SerializeField] private GameObject nullObject;
 
         [Header("Audio")]
         private AudioSource audioSource;
@@ -47,7 +50,7 @@ namespace SHADOWFALL
                 }
                 else
                 {
-                    rayHitObject = null;
+                    rayHitObject = nullObject;
                 }
 
                 if (rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == false)
