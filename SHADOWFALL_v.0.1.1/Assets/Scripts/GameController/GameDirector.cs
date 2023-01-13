@@ -17,35 +17,40 @@ namespace SHADOWFALL
     public class GameDirector : Game
     {
         [Header("Start countdown")]
-        [SerializeField] protected Text timerText;
+        [SerializeField] protected Text coutdownText;
         [SerializeField] protected Text startText;
         [SerializeField] protected float countdownTime;
         protected int seconds;
 
         [Header("Game timer")]
-        [SerializeField] protected Text ingameTimer;
+        [SerializeField] protected Text gameTimerText;
         [SerializeField] protected Text finishText;
-        [SerializeField] protected float timer;
+        [SerializeField] protected float gameTimer;
         protected int timerSec;
 
         [Header("Player")]
         [SerializeField] protected GameObject crossHair;
+        [SerializeField] protected GameObject scoreHolder;
+        [SerializeField] protected Text scoreText;
 
         [Header("Player status")]
-        protected PlayerStatus _playerStatus = new PlayerStatus();
+        public PlayerStatus PLAYERSTATUS = new PlayerStatus();
 
         [Header("Other scripts")]
         protected HitAction scr_HitAction;
 
         public void onAwake()
         {
-            _playerStatus.mouseRock = true;
+            PLAYERSTATUS.mouseRock = true;
+            PLAYERSTATUS.keyLock = true;
+
+            Debug.Log("Player input status : key=" + PLAYERSTATUS.keyLock + " mouse=" + PLAYERSTATUS.mouseRock);
 
             scr_HitAction = GetComponent<HitAction>();
         }
         public void onStart()
         {
-            _playerStatus.score = 0;
+            PLAYERSTATUS.score = 0;
         }
         public void onUpdate()
         {
@@ -58,17 +63,20 @@ namespace SHADOWFALL
         public void CountdownTimer()
         {
             if (seconds >= -6){
+                coutdownText.gameObject.SetActive(true);
                 countdownTime -= Time.deltaTime;
                 seconds = (int)countdownTime;
 
-                Debug.Log("カウントダウン : " + seconds);
+                //Debug.Log("カウントダウン : " + seconds);
 
-                timerText.text = seconds.ToString();
+                coutdownText.text = seconds.ToString();
             }
 
-            if (seconds == 0)
+            if (seconds == 0 || seconds <= 0)
             {
-                timerText.gameObject.SetActive(false);
+                coutdownText.gameObject.SetActive(false);
+
+                gameTimerText.gameObject.SetActive(true);
                 CrosshairEnable();
                 InputAllow();
             }
@@ -84,27 +92,43 @@ namespace SHADOWFALL
         }
         public void GameTimer()
         {
-            if (seconds <= 0)
+            if (seconds <= 0 && seconds >= -10)
             {
-                ingameTimer.gameObject.SetActive(true);
-                if (timer > 0)
-                {
-                    timer -= Time.deltaTime;
-                    timerSec = (int)timer;
-                    Debug.Log("Timer : " + timerSec);
+                gameTimerText.gameObject.SetActive(true);
+                scoreText.gameObject.SetActive(true);
 
-                    ingameTimer.text = timerSec.ToString();
-                }
-                else if (timer <= -1)
+                gameTimer -= Time.deltaTime;
+                timerSec = (int)gameTimer;
+                //Debug.Log("Timer : " + timerSec);
+
+                PlayerScoreController();
+
+                if (gameTimer <= -1)
                 {
-                    ingameTimer.gameObject.SetActive(false);
+                    gameTimerText.gameObject.SetActive(false);
+                }
+
+                gameTimerText.text = timerSec.ToString() + " seconds";
+
+                if (gameTimer <= 0 && gameTimer >= -5)
+                {
                     finishText.gameObject.SetActive(true);
                 }
+                else
+                {
+                    finishText.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                gameTimerText.gameObject.SetActive(false);
+                scoreText.gameObject.SetActive(false);
             }
         }
         public void InputAllow()
         {
-            _playerStatus.mouseRock = false;
+            PLAYERSTATUS.mouseRock = false;
+            PLAYERSTATUS.keyLock = false;
         }
 
         public void CrosshairEnable()
@@ -113,6 +137,11 @@ namespace SHADOWFALL
             {
                 crossHair.gameObject.SetActive(true);
             }
+        }
+
+        private void PlayerScoreController()
+        {
+            scoreText.text = PLAYERSTATUS.score.ToString() + " point";
         }
     }
 }

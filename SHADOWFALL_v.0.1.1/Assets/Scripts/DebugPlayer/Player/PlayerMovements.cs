@@ -24,7 +24,8 @@ namespace SHADOWFALL
         [SerializeField] protected Transform _playerFoot;
         #endregion
         #region Script space
-        protected PlayerStatus STATUS = new PlayerStatus();
+        // Game Controller
+        [SerializeField] protected GameDirector DIRECTOR;
         // Movements
         [SerializeField] private PlayerLook _look;
         [SerializeField] private PlayerWalk _walk;
@@ -109,16 +110,16 @@ namespace SHADOWFALL
         private void Look()
         {
             // Look around
-            if (STATUS.mouseRock == false)
+            if (DIRECTOR.PLAYERSTATUS.mouseRock == false)
             {
                 _look.Look();
             }
         }
         private void NormalMovement()
         {
-            if (STATUS.keyLock == false)
+            if (DIRECTOR.PLAYERSTATUS.keyLock == false)
             {
-                if (_playerBody.velocity.magnitude <= maxSpeed)
+                if (_playerBody.velocity.magnitude <= runSpeed)
                 {
                     _walk.Walk(); // Walking <- Need add speed limit
                     //_run.Run(); // Running <- Need add speed limit
@@ -129,23 +130,26 @@ namespace SHADOWFALL
         }
         private void Jump()
         {
-            //Debug.Log("Double Jump : " + STATUS.doubleJump);
-            if (STATUS.isGrounded)
+            if (DIRECTOR.PLAYERSTATUS.keyLock == false)
             {
-                STATUS.doubleJump = true;
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (STATUS.isGrounded)
+                //Debug.Log("Double Jump : " + STATUS.doubleJump);
+                if (DIRECTOR.PLAYERSTATUS.isGrounded)
                 {
-                    _jump.Jump();
+                    DIRECTOR.PLAYERSTATUS.doubleJump = true;
                 }
-                else
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (STATUS.doubleJump)
+                    if (DIRECTOR.PLAYERSTATUS.isGrounded)
                     {
-                        _doubleJump.DoubleJump();
-                        STATUS.doubleJump = false;
+                        _jump.Jump();
+                    }
+                    else
+                    {
+                        if (DIRECTOR.PLAYERSTATUS.doubleJump)
+                        {
+                            _doubleJump.DoubleJump();
+                            DIRECTOR.PLAYERSTATUS.doubleJump = false;
+                        }
                     }
                 }
             }
@@ -155,19 +159,19 @@ namespace SHADOWFALL
         #region Player status controller space
         private void PlayerMouseInputEnable()
         {
-            STATUS.mouseRock = false;
+            DIRECTOR.PLAYERSTATUS.mouseRock = false;
         }
         private void PlayerMouseInputDisable()
         {
-            STATUS.mouseRock = true;
+            DIRECTOR.PLAYERSTATUS.mouseRock = true;
         }
         private void PlayerKeyInputEnable()
         {
-            STATUS.keyLock = false;
+            DIRECTOR.PLAYERSTATUS.keyLock = false;
         }
         private void PlayerKeyInputDisable()
         {
-            STATUS.keyLock = true;
+            DIRECTOR.PLAYERSTATUS.keyLock = true;
         }
         private void InputEnablesController()
         {
@@ -211,41 +215,41 @@ namespace SHADOWFALL
             // Here can check for player is ground or not ground.
             if (_playerUnderRay.underDistance <= 1.0f)
             {
-                STATUS.isGrounded = true;
+                DIRECTOR.PLAYERSTATUS.isGrounded = true;
             }
             if (_playerUnderRay.underDistance > 1.0f)
             {
-                STATUS.isGrounded = false;
+                DIRECTOR.PLAYERSTATUS.isGrounded = false;
             }
         }
         private void PlayerLeftWallChecker()
         {
-            if (STATUS.isGrounded == false && _playerLeftRay.leftRayDistance <= 0.5f)
+            if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerLeftRay.leftRayDistance <= 0.5f)
             {
-                STATUS.onLeftWall = true;
+                DIRECTOR.PLAYERSTATUS.onLeftWall = true;
             }
-            else if (STATUS.isGrounded == false && _playerLeftRay.leftRayDistance > 0.5f)
+            else if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerLeftRay.leftRayDistance > 0.5f)
             {
-                STATUS.onLeftWall = false;
+                DIRECTOR.PLAYERSTATUS.onLeftWall = false;
             }
             else
             {
-                STATUS.onLeftWall = false;
+                DIRECTOR.PLAYERSTATUS.onLeftWall = false;
             }
         }
         private void PlayerRightWallChecker()
         {
-            if (STATUS.isGrounded == false && _playerRightRay.rightRayDistance <= 0.5f)
+            if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerRightRay.rightRayDistance <= 0.5f)
             {
-                STATUS.onRightWall = true;
+                DIRECTOR.PLAYERSTATUS.onRightWall = true;
             }
-            else if (STATUS.isGrounded == false && _playerRightRay.rightRayDistance > 0.5f)
+            else if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerRightRay.rightRayDistance > 0.5f)
             {
-                STATUS.onRightWall = false;
+                DIRECTOR.PLAYERSTATUS.onRightWall = false;
             }
             else
             {
-                STATUS.onRightWall = false;
+                DIRECTOR.PLAYERSTATUS.onRightWall = false;
             }
         }
         #endregion

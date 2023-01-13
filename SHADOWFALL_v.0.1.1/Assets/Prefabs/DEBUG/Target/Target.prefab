@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4297532044279095181}
   - component: {fileID: 4297532044279095178}
   - component: {fileID: 4297532044279095179}
-  - component: {fileID: 4297532044279095180}
+  - component: {fileID: 2837967520786536707}
   m_Layer: 7
   m_Name: Object
   m_TagString: Untagged
@@ -130,7 +130,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4297532044279095180
+--- !u!114 &2837967520786536707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,3 +144,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 4297532044279095177}
   fire: {fileID: 0}
+  hit: 0

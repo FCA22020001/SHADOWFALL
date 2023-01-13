@@ -4,7 +4,7 @@
 //      Released by LAPLACE Network ( https://discord.gg/fWd4FvVnaH )
 //
 
-#region GunFire : SUCCESSION
+#region GunFire : PlayerMovements
 // Script description
 #endregion
 
@@ -13,9 +13,8 @@ using UnityEngine;
 
 namespace SHADOWFALL
 {
-    public class GunFire : MonoBehaviour
+    public class GunFire : PlayerMovements
     {
-        [SerializeField] private Transform head;
         private RaycastHit FireRayHit;
 
         [Header("Objects")]
@@ -25,8 +24,6 @@ namespace SHADOWFALL
         [Header("Audio")]
         private AudioSource audioSource;
         [SerializeField] private AudioClip fireSound;
-
-        protected PlayerStatus STATUS = new PlayerStatus();
 
         void Start()
         {
@@ -39,26 +36,37 @@ namespace SHADOWFALL
         
         private void Fire()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (DIRECTOR.PLAYERSTATUS.mouseRock == false)
             {
-                audioSource.PlayOneShot(fireSound);
-
-                if(Physics.Raycast(head.transform.position, head.transform.forward, out FireRayHit, 1000))
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    rayHitObject = FireRayHit.collider.gameObject;
-                    //Debug.Log("Target object : " + rayHitObject);
-                }
-                else
-                {
-                    rayHitObject = nullObject;
-                }
+                    audioSource.PlayOneShot(fireSound);
 
-                if (rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == false)
-                {
-                    STATUS.score += 1;
-                }
+                    if(Physics.Raycast(_playerHead.transform.position, _playerHead.transform.forward, out FireRayHit, 1000))
+                    {
+                        rayHitObject = FireRayHit.collider.gameObject;
+                        //Debug.Log("Target object : " + rayHitObject);
+                    }
+                    else
+                    {
+                        rayHitObject = nullObject;
+                    }
 
-                //Debug.Log(" Score : " + STATUS.score);
+                    if (rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == false)
+                    {
+                        DIRECTOR.PLAYERSTATUS.score += 15;
+                    }
+                    else if(rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == true)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        DIRECTOR.PLAYERSTATUS.score /= 3;
+                    }
+
+                    Debug.Log(" Score : " + DIRECTOR.PLAYERSTATUS.score);
+                }
             }
         }
     }

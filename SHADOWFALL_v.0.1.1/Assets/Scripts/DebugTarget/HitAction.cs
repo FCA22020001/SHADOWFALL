@@ -17,6 +17,7 @@ namespace SHADOWFALL
     {
         [Header("Object")]
         [SerializeField] private GameObject Target;
+        [SerializeField] public GameObject TargetInMinimap;
 
         [Header("Script")]
         [SerializeField] private GunFire fire;
@@ -24,11 +25,9 @@ namespace SHADOWFALL
         [Header("Object status")]
         [SerializeField] public bool hit;
 
-        protected PlayerStatus STATUS = new PlayerStatus();
-
         void Start()
         {
-            Target = this.gameObject;
+            //fire = GetComponent<GunFire>();
             hit = false;
         }
 
@@ -41,8 +40,14 @@ namespace SHADOWFALL
         {
             if (Target == fire.rayHitObject)
             {
-                this.GetComponent<Renderer>().material.color = Color.red;
+                Target.GetComponent<Renderer>().material.color = Color.red;
                 hit = true;
+
+                TargetInMinimap.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else
+            {
+                return;
             }
         }
     }
