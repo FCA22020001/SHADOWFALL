@@ -14,7 +14,8 @@ using UnityEngine;
 
 public class PlayerStatus
 {
-    public bool mouseRock, keyLock;
+    public bool mouseLock;
+    public bool keyLock;
 
     public bool isGrounded;
     public bool onLeftWall;

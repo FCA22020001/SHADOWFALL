@@ -36,7 +36,7 @@ namespace SHADOWFALL
         
         private void Fire()
         {
-            if (DIRECTOR.PLAYERSTATUS.mouseRock == false)
+            if (PLAYERSTATUS.mouseLock == false)
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
@@ -45,27 +45,24 @@ namespace SHADOWFALL
                     if(Physics.Raycast(_playerHead.transform.position, _playerHead.transform.forward, out FireRayHit, 1000))
                     {
                         rayHitObject = FireRayHit.collider.gameObject;
-                        //Debug.Log("Target object : " + rayHitObject);
+                        Debug.Log("Target object : " + rayHitObject);
                     }
                     else
                     {
                         rayHitObject = nullObject;
+                        Debug.Log("Target object : " + rayHitObject);
                     }
 
                     if (rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == false)
                     {
-                        DIRECTOR.PLAYERSTATUS.score += 15;
-                    }
-                    else if(rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == true)
-                    {
-                        return;
+                        PLAYERSTATUS.score += 15;
+                        Debug.Log("Score +15 : Done : Currently score is " + PLAYERSTATUS.score);
                     }
                     else
                     {
-                        DIRECTOR.PLAYERSTATUS.score /= 3;
+                        PLAYERSTATUS.score /= 3;
+                        Debug.Log("Score /3 : Done : Currently score is " + PLAYERSTATUS.score);
                     }
-
-                    Debug.Log(" Score : " + DIRECTOR.PLAYERSTATUS.score);
                 }
             }
         }

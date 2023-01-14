@@ -18,7 +18,7 @@ namespace SHADOWFALL
         [SerializeField] private float doubleJumpForce; // Set 8.0f
         public void DoubleJump()
         {
-                _playerBody.AddForce(_playerBody.transform.up * doubleJumpForce, ForceMode.Impulse);
+            _playerBody.AddForce(_playerBody.transform.up * doubleJumpForce, ForceMode.Impulse);
         }
     }
 }

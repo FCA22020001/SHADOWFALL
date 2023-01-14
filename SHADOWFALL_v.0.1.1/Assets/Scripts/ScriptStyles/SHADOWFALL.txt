@@ -6,7 +6,7 @@ Location: ~\Editor\Data\Resources\ScriptTemplates\81-C#Script-NewBehaviorScript.
 //      Released by LAPLACE Network ( https://discord.gg/fWd4FvVnaH )
 //
 
-#region test : SUCCESSION
+#region #SCRIPTNAME# : SUCCESSION
 // Script description
 #endregion
 
@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace SHADOWFALL
 {
-    public class test : MonoBehaviour
+    public class #SCRIPTNAME# : MonoBehaviour
     {
         // Welcome to new script!
     }

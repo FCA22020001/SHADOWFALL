@@ -19,7 +19,7 @@ namespace SHADOWFALL
 
         public void Jump()
         {
-                _playerBody.AddForce(_playerBody.transform.up * jumpForce, ForceMode.Impulse);
+            _playerBody.AddForce(_playerBody.transform.up * jumpForce, ForceMode.Impulse);
             //Debug.Log("ApperForce : " + _playerBody.velocity.y);
         }
     }

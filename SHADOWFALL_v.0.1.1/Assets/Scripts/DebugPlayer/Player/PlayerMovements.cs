@@ -11,6 +11,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SHADOWFALL
 {
@@ -22,6 +23,9 @@ namespace SHADOWFALL
         [SerializeField] protected Transform _playerLeftShoulder;
         [SerializeField] protected Transform _playerRightShoulder;
         [SerializeField] protected Transform _playerFoot;
+
+        [Header("Player status")]
+        public PlayerStatus PLAYERSTATUS = new PlayerStatus();
         #endregion
         #region Script space
         // Game Controller
@@ -44,12 +48,16 @@ namespace SHADOWFALL
         [SerializeField] protected float maxSpeed; // 25f
         [SerializeField] protected float nowSpeed;
         #endregion
+        #region User interface
+        [SerializeField] protected GameObject ui_BackGround;
+        [SerializeField] protected GameObject ui_EscapeKeyButtonHolder;
+        #endregion
         #region Input configuration
         [SerializeField] protected float mouseSensitivity = 7f;
         #endregion
 
         #region Temporary variables
-        protected float keyEscape, keyTab, jumpCount;
+        protected bool keyEscape, keyTab, jumpCount;
         protected int layerMask_Ground = 6, layerMask_Slope = 9,layerMask_Zipline = 10, layerMask_Stairs = 11, layerMask_Ladder = 12, layerMask_RunnableWall = 13;
         #endregion
 
@@ -58,12 +66,11 @@ namespace SHADOWFALL
         {
             //Debug.Log("Loading datas...");
             ResetPlayerGear();
+            ResetPlayerInputStatus();
         }
         public void onStart()
         {
             //Debug.Log("Loading scripts...");
-            //PlayerMouseInputEnable();
-            //PlayerKeyInputEnable();
             LockCoursor();
         }
         public void onUpdate()
@@ -98,6 +105,12 @@ namespace SHADOWFALL
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+        private void ResetPlayerInputStatus()
+        {
+            keyEscape = false;
+            keyTab = false;
+            jumpCount = false;
+        }
         #endregion
 
         #region Player movements
@@ -110,14 +123,14 @@ namespace SHADOWFALL
         private void Look()
         {
             // Look around
-            if (DIRECTOR.PLAYERSTATUS.mouseRock == false)
+            if (PLAYERSTATUS.mouseLock == false)
             {
                 _look.Look();
             }
         }
         private void NormalMovement()
         {
-            if (DIRECTOR.PLAYERSTATUS.keyLock == false)
+            if (PLAYERSTATUS.keyLock == false)
             {
                 if (_playerBody.velocity.magnitude <= runSpeed)
                 {
@@ -130,25 +143,25 @@ namespace SHADOWFALL
         }
         private void Jump()
         {
-            if (DIRECTOR.PLAYERSTATUS.keyLock == false)
+            if (PLAYERSTATUS.keyLock == false)
             {
                 //Debug.Log("Double Jump : " + STATUS.doubleJump);
-                if (DIRECTOR.PLAYERSTATUS.isGrounded)
+                if (PLAYERSTATUS.isGrounded)
                 {
-                    DIRECTOR.PLAYERSTATUS.doubleJump = true;
+                    PLAYERSTATUS.doubleJump = true;
                 }
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (DIRECTOR.PLAYERSTATUS.isGrounded)
+                    if (PLAYERSTATUS.isGrounded)
                     {
                         _jump.Jump();
                     }
                     else
                     {
-                        if (DIRECTOR.PLAYERSTATUS.doubleJump)
+                        if (PLAYERSTATUS.doubleJump)
                         {
                             _doubleJump.DoubleJump();
-                            DIRECTOR.PLAYERSTATUS.doubleJump = false;
+                            PLAYERSTATUS.doubleJump = false;
                         }
                     }
                 }
@@ -157,99 +170,128 @@ namespace SHADOWFALL
         #endregion
 
         #region Player status controller space
-        private void PlayerMouseInputEnable()
+        public void PlayerMouseInputEnable()
         {
-            DIRECTOR.PLAYERSTATUS.mouseRock = false;
+            PLAYERSTATUS.mouseLock = false;
         }
-        private void PlayerMouseInputDisable()
+        public void PlayerMouseInputDisable()
         {
-            DIRECTOR.PLAYERSTATUS.mouseRock = true;
+            PLAYERSTATUS.mouseLock = true;
         }
-        private void PlayerKeyInputEnable()
+        public void PlayerKeyInputEnable()
         {
-            DIRECTOR.PLAYERSTATUS.keyLock = false;
+            PLAYERSTATUS.keyLock = false;
         }
-        private void PlayerKeyInputDisable()
+        public void PlayerKeyInputDisable()
         {
-            DIRECTOR.PLAYERSTATUS.keyLock = true;
+            PLAYERSTATUS.keyLock = true;
         }
         private void InputEnablesController()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && keyEscape == 0)
+            if (DIRECTOR.coutdownSeconds <= 0)
             {
-                keyEscape = 1;
+                if (Input.GetKeyDown(KeyCode.Escape) && keyEscape == false)
+                {
+                    keyEscape = true;
+                    PlayerMouseInputDisable();
+                    PlayerKeyInputDisable();
+
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape) && keyEscape == true)
+                {
+                    keyEscape = false;
+                    PlayerMouseInputEnable();
+                    PlayerKeyInputEnable();
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    //Debug.Log("Cursor Visible : " + Cursor.visible);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Tab) && keyTab == false)
+                {
+                    keyTab = true;
+                    PlayerMouseInputDisable();
+                    PlayerKeyInputEnable();
+                    Cursor.lockState = CursorLockMode.Confined;
+                    Cursor.visible = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.Tab) && keyTab == true)
+                {
+                    keyTab = false;
+                    PlayerMouseInputEnable();
+                    PlayerKeyInputEnable();
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                }
+            }
+            else if (DIRECTOR.coutdownSeconds <= 0)
+            {
+                keyEscape = false;
                 PlayerMouseInputDisable();
                 PlayerKeyInputDisable();
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && keyEscape == 1)
-            {
-                keyEscape = 0;
-                PlayerMouseInputEnable();
-                PlayerKeyInputEnable();
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                //Debug.Log("Cursor Visible : " + Cursor.visible);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Tab) && keyTab == 0)
-            {
-                keyTab = 1;
-                PlayerMouseInputDisable();
-                PlayerKeyInputEnable();
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-            }
-            else if (Input.GetKeyDown(KeyCode.Tab) && keyTab == 1)
-            {
-                keyTab = 0;
-                PlayerMouseInputEnable();
-                PlayerKeyInputEnable();
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
+            
         }
         private void PlayerGroundChecker()
         {
             // Here can check for player is ground or not ground.
             if (_playerUnderRay.underDistance <= 1.0f)
             {
-                DIRECTOR.PLAYERSTATUS.isGrounded = true;
+                PLAYERSTATUS.isGrounded = true;
             }
             if (_playerUnderRay.underDistance > 1.0f)
             {
-                DIRECTOR.PLAYERSTATUS.isGrounded = false;
+                PLAYERSTATUS.isGrounded = false;
             }
         }
         private void PlayerLeftWallChecker()
         {
-            if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerLeftRay.leftRayDistance <= 0.5f)
+            if (PLAYERSTATUS.isGrounded == false && _playerLeftRay.leftRayDistance <= 0.5f)
             {
-                DIRECTOR.PLAYERSTATUS.onLeftWall = true;
+                PLAYERSTATUS.onLeftWall = true;
             }
-            else if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerLeftRay.leftRayDistance > 0.5f)
+            else if (PLAYERSTATUS.isGrounded == false && _playerLeftRay.leftRayDistance > 0.5f)
             {
-                DIRECTOR.PLAYERSTATUS.onLeftWall = false;
+                PLAYERSTATUS.onLeftWall = false;
             }
             else
             {
-                DIRECTOR.PLAYERSTATUS.onLeftWall = false;
+                PLAYERSTATUS.onLeftWall = false;
             }
         }
         private void PlayerRightWallChecker()
         {
-            if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerRightRay.rightRayDistance <= 0.5f)
+            if (PLAYERSTATUS.isGrounded == false && _playerRightRay.rightRayDistance <= 0.5f)
             {
-                DIRECTOR.PLAYERSTATUS.onRightWall = true;
+                PLAYERSTATUS.onRightWall = true;
             }
-            else if (DIRECTOR.PLAYERSTATUS.isGrounded == false && _playerRightRay.rightRayDistance > 0.5f)
+            else if (PLAYERSTATUS.isGrounded == false && _playerRightRay.rightRayDistance > 0.5f)
             {
-                DIRECTOR.PLAYERSTATUS.onRightWall = false;
+                PLAYERSTATUS.onRightWall = false;
             }
             else
             {
-                DIRECTOR.PLAYERSTATUS.onRightWall = false;
+                PLAYERSTATUS.onRightWall = false;
+            }
+        }
+        #endregion
+
+        #region UI onNtroller
+        private void EscapeKeyUI()
+        {
+            if (keyEscape == true)
+            {
+                ui_BackGround.gameObject.SetActive(true);
+                ui_EscapeKeyButtonHolder.gameObject.SetActive(true);
+            }
+            if (keyEscape == false)
+            {
+                ui_BackGround.gameObject.SetActive(false);
+                ui_EscapeKeyButtonHolder.gameObject.SetActive(false);
             }
         }
         #endregion

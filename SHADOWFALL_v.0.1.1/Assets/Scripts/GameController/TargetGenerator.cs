@@ -9,6 +9,8 @@
 #endregion
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SHADOWFALL
@@ -96,6 +98,9 @@ namespace SHADOWFALL
                 rdy_T0 = true;
                 currentLaunchTarget -= 1;
 
+                // Set visualization
+                Target_0_inMinimap.gameObject.SetActive(false);
+
                 // Reset target
                 Target_0.GetComponent<Renderer>().material.color = Color.green;
                 Target_0_inMinimap.GetComponent<Renderer>().material.color = Color.red;
@@ -106,6 +111,9 @@ namespace SHADOWFALL
                 Target_1.transform.position = new Vector3(0, -15, 0);
                 rdy_T1 = true;
                 currentLaunchTarget -= 1;
+
+                // Set visualization
+                Target_1_inMinimap.gameObject.SetActive(false);
 
                 // Reset target
                 Target_1.GetComponent<Renderer>().material.color = Color.green;
@@ -118,6 +126,9 @@ namespace SHADOWFALL
                 rdy_T2 = true;
                 currentLaunchTarget -= 1;
 
+                // Set visualization
+                Target_2_inMinimap.gameObject.SetActive(false);
+
                 // Reset target
                 Target_2.GetComponent<Renderer>().material.color = Color.green;
                 Target_2_inMinimap.GetComponent<Renderer>().material.color = Color.red;
@@ -129,8 +140,10 @@ namespace SHADOWFALL
                 rdy_T3 = true;
                 currentLaunchTarget -= 1;
 
+                // Set visualization
+                Target_3_inMinimap.gameObject.SetActive(false);
+
                 // Reset target
-                Target_3.GetComponent<Renderer>().material.color = Color.green;
                 Target_3_inMinimap.GetComponent<Renderer>().material.color = Color.red;
                 Target_3.GetComponent<HitAction>().hit = false;
             }
@@ -153,6 +166,10 @@ namespace SHADOWFALL
 
         private void CaluculateTargetZeroPosition()
         {
+            
+            Target_0.GetComponent<Renderer>().material.color = Color.green;
+            Target_0_inMinimap.GetComponent<Renderer>().material.color = Color.green;
+
             // Caluculate target's x
             positionX = UnityEngine.Random.Range(-240.0f, 240.0f);
             // Caluculate target's y
@@ -163,6 +180,9 @@ namespace SHADOWFALL
             // Aooly target position
             Target_0.transform.position = new Vector3(positionX, positionY, positionZ);
 
+            // Set visualization
+            Target_0_inMinimap.gameObject.SetActive(true);
+
             // Set target amount
             currentLaunchTarget += 1;
             //Set ready status
@@ -170,6 +190,10 @@ namespace SHADOWFALL
         }
         private void CaluculateTargetOnePosition()
         {
+            
+            Target_1.GetComponent<Renderer>().material.color = Color.green;
+            Target_1_inMinimap.GetComponent<Renderer>().material.color = Color.green;
+
             // Caluculate target's x
             positionX = UnityEngine.Random.Range(-240.0f, 240.0f);
             // Caluculate target's y
@@ -180,6 +204,9 @@ namespace SHADOWFALL
             // Aooly target position
             Target_1.transform.position = new Vector3(positionX, positionY, positionZ);
 
+            // Set visualization
+            Target_1_inMinimap.gameObject.SetActive(true);
+
             // Set target amount
             currentLaunchTarget += 1;
             //Set ready status
@@ -187,6 +214,9 @@ namespace SHADOWFALL
         }
         private void CaluculateTargetTwoPosition()
         {
+            Target_2.GetComponent<Renderer>().material.color = Color.green;
+            Target_2_inMinimap.GetComponent<Renderer>().material.color = Color.green;
+
             // Caluculate target's x
             positionX = UnityEngine.Random.Range(-240.0f, 240.0f);
             // Caluculate target's y
@@ -197,6 +227,9 @@ namespace SHADOWFALL
             // Aooly target position
             Target_2.transform.position = new Vector3(positionX, positionY, positionZ);
 
+            // Set visualization
+            Target_2_inMinimap.gameObject.SetActive(true);
+
             // Set target amount
             currentLaunchTarget += 1;
             //Set ready status
@@ -204,6 +237,10 @@ namespace SHADOWFALL
         }
         private void CaluculateTargetThreePosition()
         {
+            Target_3.GetComponent<Renderer>().material.color = Color.green;
+            Target_3_inMinimap.GetComponent<Renderer>().material.color = Color.green;
+
+
             // Caluculate target's x
             positionX = UnityEngine.Random.Range(-240.0f, 240.0f);
             // Caluculate target's y
@@ -213,6 +250,9 @@ namespace SHADOWFALL
 
             // Aooly target position
             Target_3.transform.position = new Vector3(positionX, positionY, positionZ);
+
+            // Set visualization
+            Target_3_inMinimap.gameObject.SetActive(true);
 
             // Set target amount
             currentLaunchTarget += 1;

@@ -27,7 +27,7 @@ namespace SHADOWFALL
         }
         void Update()
         {
-            director.CountdownTimer();
+            director.onUpdate();
         }
         void FixedUpdate()
         {
