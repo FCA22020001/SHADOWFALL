@@ -101,7 +101,6 @@ namespace SHADOWFALL
                 //Debug.Log("Timer : " + timerSec);
 
                 ScoreCaluculator();
-                Debug.Log(scr_PlayerController.PLAYERSTATUS.score);
 
                 gameTimerText.text = timerSec.ToString() + " seconds";
 
@@ -146,7 +145,9 @@ namespace SHADOWFALL
 
         private void ScoreCaluculator()
         {
-            scoreText.text = scr_PlayerController.PLAYERSTATUS.score.ToString("#####") + " point";
+            float score = scr_PlayerController.PLAYERSTATUS.score;
+            scoreText.text = score.ToString() + " point";
+            Debug.Log("Score getting now : " + score);
         }
     }
 }
