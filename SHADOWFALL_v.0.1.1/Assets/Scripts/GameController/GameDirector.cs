@@ -26,7 +26,7 @@ namespace SHADOWFALL
         [SerializeField] protected Text gameTimerText;
         [SerializeField] protected Text finishText;
         [SerializeField] protected float gameTimer;
-        protected int timerSec;
+        public int timerSec;
         protected float finishTextTimer = 5.0f;
 
         [Header("Player")]
@@ -145,9 +145,18 @@ namespace SHADOWFALL
 
         private void ScoreCaluculator()
         {
-            float score = scr_PlayerController.PLAYERSTATUS.score;
-            scoreText.text = score.ToString() + " point";
-            Debug.Log("Score getting now : " + score);
+            if (scr_PlayerController.PLAYERSTATUS.score >= 0)
+            {
+                float score = scr_PlayerController.PLAYERSTATUS.score;
+                // scoreText.text = score.ToString() + " point";
+                scoreText.text = scr_PlayerController.PLAYERSTATUS.ScoreText;
+                Debug.Log("Score getting now : " + score);
+            }
+            else
+            {
+                float score = 0;
+                scoreText.text = score.ToString() + " point";
+            }
         }
     }
 }

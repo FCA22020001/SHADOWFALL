@@ -18,11 +18,11 @@ namespace SHADOWFALL
     public class PlayerMovements : MonoBehaviour
     {
         #region Player body component
-        [SerializeField] protected Rigidbody _playerBody;
-        [SerializeField] protected Transform _playerHead;
-        [SerializeField] protected Transform _playerLeftShoulder;
-        [SerializeField] protected Transform _playerRightShoulder;
-        [SerializeField] protected Transform _playerFoot;
+        [SerializeField] public Rigidbody _playerBody;
+        [SerializeField] public Transform _playerHead;
+        [SerializeField] public Transform _playerLeftShoulder;
+        [SerializeField] public Transform _playerRightShoulder;
+        [SerializeField] public Transform _playerFoot;
 
         [Header("Player status")]
         public PlayerStatus PLAYERSTATUS = new PlayerStatus();
@@ -188,7 +188,18 @@ namespace SHADOWFALL
         }
         private void InputEnablesController()
         {
-            if (DIRECTOR.coutdownSeconds <= 0)
+            if (DIRECTOR.timerSec >= 0f)
+            {
+                PlayerMouseInputEnable();
+                PlayerKeyInputEnable();
+            }
+            else
+            {
+                PlayerMouseInputDisable();
+                PlayerKeyInputDisable();
+            }
+
+            if (DIRECTOR.coutdownSeconds <= 1f && DIRECTOR.timerSec >= 1f)
             {
                 if (Input.GetKeyDown(KeyCode.Escape) && keyEscape == false)
                 {
@@ -226,14 +237,14 @@ namespace SHADOWFALL
                     Cursor.visible = false;
                 }
             }
-            else if (DIRECTOR.coutdownSeconds <= 0)
-            {
-                keyEscape = false;
-                PlayerMouseInputDisable();
-                PlayerKeyInputDisable();
-                //Cursor.lockState = CursorLockMode.Locked;
-                //Cursor.visible = false;
-            }
+            // else
+            // {
+            //     keyEscape = false;
+            //     PlayerMouseInputDisable();
+            //     PlayerKeyInputDisable();
+            //     //Cursor.lockState = CursorLockMode.Locked;
+            //     //Cursor.visible = false;
+            // }
             
         }
         private void PlayerGroundChecker()
@@ -280,7 +291,7 @@ namespace SHADOWFALL
         }
         #endregion
 
-        #region UI onNtroller
+        #region UI Conntroller
         private void EscapeKeyUI()
         {
             if (keyEscape == true)

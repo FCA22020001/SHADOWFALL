@@ -4,8 +4,8 @@
 //      Released by LAPLACE Network ( https://discord.gg/fWd4FvVnaH )
 //
 
-#region GunFire : PlayerMovements
-// Script description
+#region GunFire : MonoBehaviour
+// This script is player's Attack function
 #endregion
 
 using System;
@@ -13,9 +13,12 @@ using UnityEngine;
 
 namespace SHADOWFALL
 {
-    public class GunFire : PlayerMovements
+    public class GunFire : MonoBehaviour
     {
-        private RaycastHit FireRayHit;
+        // private RaycastHit FireRayHit;
+        // [SerializeField] private LayerMask layerMask;
+        [Header("Scripts")]
+        [SerializeField] PlayerMovements playerMovements;
 
         [Header("Objects")]
         [SerializeField] public GameObject rayHitObject;
@@ -36,13 +39,13 @@ namespace SHADOWFALL
         
         private void Fire()
         {
-            if (PLAYERSTATUS.mouseLock == false)
+            if (playerMovements.PLAYERSTATUS.mouseLock == false)
             {
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     audioSource.PlayOneShot(fireSound);
 
-                    if(Physics.Raycast(_playerHead.transform.position, _playerHead.transform.forward, out FireRayHit, 1000))
+                    if(Physics.Raycast(playerMovements._playerHead.transform.position, playerMovements._playerHead.transform.forward, out var FireRayHit, 1000))
                     {
                         rayHitObject = FireRayHit.collider.gameObject;
                         Debug.Log("Target object : " + rayHitObject);
@@ -55,13 +58,16 @@ namespace SHADOWFALL
 
                     if (rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == false)
                     {
-                        PLAYERSTATUS.score += 15;
-                        Debug.Log("Score +15 : Done : Currently score is " + PLAYERSTATUS.score);
+                        playerMovements.PLAYERSTATUS.score += 15;
+                        Debug.Log("Score +15 : Done : Currently score is " + playerMovements.PLAYERSTATUS.score);
                     }
                     else
                     {
-                        PLAYERSTATUS.score /= 3;
-                        Debug.Log("Score /3 : Done : Currently score is " + PLAYERSTATUS.score);
+                        var score = playerMovements.PLAYERSTATUS.score;
+                        score /= 3;
+                        //playerMovements.PLAYERSTATUS.score = (int)score;
+                        playerMovements.PLAYERSTATUS.score = Mathf.FloorToInt(score);
+                        Debug.Log("Score /3 : Done : Currently score is " + playerMovements.PLAYERSTATUS.score);
                     }
                 }
             }

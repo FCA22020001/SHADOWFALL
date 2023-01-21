@@ -3698,28 +3698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712284b49aaa63141890c97cb9504098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerBody: {fileID: 0}
-  _playerHead: {fileID: 1623947250}
-  _playerLeftShoulder: {fileID: 0}
-  _playerRightShoulder: {fileID: 0}
-  _playerFoot: {fileID: 0}
-  DIRECTOR: {fileID: 1859247365}
-  _look: {fileID: 0}
-  _walk: {fileID: 0}
-  _run: {fileID: 0}
-  _jump: {fileID: 0}
-  _doubleJump: {fileID: 0}
-  _crouch: {fileID: 0}
-  _playerUnderRay: {fileID: 0}
-  _playerLeftRay: {fileID: 0}
-  _playerRightRay: {fileID: 0}
-  walkSpeed: 0
-  runSpeed: 0
-  maxSpeed: 0
-  nowSpeed: 0
-  ui_BackGround: {fileID: 0}
-  ui_EscapeKeyButtonHolder: {fileID: 0}
-  mouseSensitivity: 7
+  playerMovements: {fileID: 1358766651}
   rayHitObject: {fileID: 0}
   nullObject: {fileID: 1922839576}
   fireSound: {fileID: 8300000, guid: ed6c5b1a5376cab4282ab7cefd3b3eb2, type: 3}
