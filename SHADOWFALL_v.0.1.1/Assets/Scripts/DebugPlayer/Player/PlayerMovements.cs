@@ -195,8 +195,10 @@ namespace SHADOWFALL
             }
             else
             {
-                PlayerMouseInputDisable();
-                PlayerKeyInputDisable();
+                //PlayerMouseInputDisable();
+                //PlayerKeyInputDisable();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
 
             if (DIRECTOR.coutdownSeconds <= 1f && DIRECTOR.timerSec >= 1f)

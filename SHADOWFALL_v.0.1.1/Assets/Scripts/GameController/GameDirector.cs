@@ -11,6 +11,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace SHADOWFALL
 {
@@ -88,6 +89,7 @@ namespace SHADOWFALL
             {
                 startText.gameObject.SetActive(false);
             }
+
         }
         public void InGameTimer()
         {
@@ -122,6 +124,10 @@ namespace SHADOWFALL
                     {
                         finishText.gameObject.SetActive(false);
                     }
+                }
+                if (timerSec == 0)
+                {
+                    SceneManager.LoadScene("Result");
                 }
                 else
                 {
