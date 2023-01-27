@@ -9,6 +9,7 @@
 #endregion
 
 using System;
+using System.Text.Json;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManager;
@@ -20,10 +21,12 @@ namespace SHADOWFALL
         [Header("Game start coutdown")]
         [SerializeField] protected Text countdownText;
         [SerializeField] protected Text startText;
-        [SerializeField] protected int coutdownTime; // 5 sec
+        [SerializeField] private int countdown; // Set here to countdown seconds.
+        [SerializeField] protected int countdownTime; // 5 sec
         public int _countdownTime;
         [Header("Game timer")]
         [SerializeField] protected Text timerText;
+        [SerializeField] private int timer; // Set here to timer seconds.
         [SerializeField] protected int timerTime; // 60 sec
         public int _timerTime;
 
@@ -34,6 +37,13 @@ namespace SHADOWFALL
         [Header("Status")]
         [SerializeField] protected bool inGame;
 
+
+        private void Awake()
+        {
+            // Reset timer
+            countdownTime = countdown;
+            timerTime = timer;
+        }
 
         private void startCoutdown()
         {
