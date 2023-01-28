@@ -7,3 +7,6 @@ This is my first fps shooting game for unity.
 
 ### IN GAME
 - NO BUGS
+
+# Add new feature
+- [Keybind](https://gamedev65535.com/entry/unity_inputsystem_howtouse/)
