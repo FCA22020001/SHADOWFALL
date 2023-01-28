@@ -32,6 +32,7 @@ namespace SHADOWFALL
             // Shot ray from foot to under the body
             if (Physics.Raycast(transform.position, -transform.up, out underRayHit))
             {
+                // Caluculate the distance from object to under hit;
                 underDistance = Vector3.Distance(transform.position, underRayHit.point);
 
                 // Debug space

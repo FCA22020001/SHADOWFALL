@@ -5,7 +5,8 @@
 //
 
 #region ShoulderLeftRay : MonoBehaviour
-// 
+// This script is checking object left side.
+// Using raycast
 #endregion
 
 using System;
@@ -31,11 +32,14 @@ namespace SHADOWFALL
             // Shot ray from foot left the body
             if (Physics.Raycast(transform.position, -transform.right, out LeftRayHit))
             {
+                // Caluculate distance from body to left hit
                 leftRayDistance = Vector3.Distance(transform.position, LeftRayHit.point);
 
+                // Get raycast hitting object
                 leftrayHitObject = LeftRayHit.transform.gameObject.layer;
                 //Debug.Log("Hit object layer int : " + LeftRayHit.transform.gameObject.layer);
 
+                // Check runnable wall
                 if (leftRayDistance <= 0.5f && leftrayHitObject == LayerMask.NameToLayer("RunnableWall"))
                 {
                     Debug.Log("Left rayHit to wall from left raycast : " + leftrayHitObject + " ObjectName : " + LayerMask.LayerToName(leftrayHitObject));

@@ -30,6 +30,7 @@ namespace SHADOWFALL
             // Shot ray from foot to kneeForward the body
             if (Physics.Raycast(transform.position, transform.forward, out LookRayHit))
             {
+                // Caluculate distance from body to looking direction
                 lookRayDistance = Vector3.Distance(transform.position, LookRayHit.point);
 
                 // Debug space

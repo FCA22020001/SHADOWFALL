@@ -10,16 +10,19 @@ namespace SHADOWFALL
         private PlayerMovements MOVEMENTS;
         [SerializeField] private Text scoreText;
 
-        // Start is called before the first frame update
         void Start()
         {
             MOVEMENTS = GetComponent<PlayerMovements>();
 
+            // Change mouse lock
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            // Get score
-            float score = (int)MOVEMENTS.PLAYERSTATUS.score;
+            // Get score form before scene
+            float resultScore = PlayerPrefs.GetFloat("SCORE");
+
+            // Set score and edit text in result scene.
+            float score = (int)resultScore;
             scoreText.text = score.ToString() + " point";
 
         }

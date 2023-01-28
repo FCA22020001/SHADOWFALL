@@ -5,7 +5,7 @@
 //
 
 #region SlopeLeftCheckRay : MonoBehaviour
-// 
+// DSABLE THIS SCRIPT
 #endregion
 
 using System;

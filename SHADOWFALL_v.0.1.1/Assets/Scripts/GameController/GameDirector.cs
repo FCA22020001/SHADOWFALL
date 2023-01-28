@@ -127,6 +127,9 @@ namespace SHADOWFALL
                 }
                 if (timerSec == 0)
                 {
+                    PlayerPrefs.SetFloat("SCORE", scr_PlayerController.PLAYERSTATUS.score);
+                    PlayerPrefs.Save();
+
                     SceneManager.LoadScene("Result");
                 }
                 else
