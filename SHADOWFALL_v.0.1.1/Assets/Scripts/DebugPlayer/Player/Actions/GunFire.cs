@@ -68,11 +68,11 @@ namespace SHADOWFALL
                     if (rayHitObject.layer == 7 && rayHitObject.gameObject.GetComponent<HitAction>().hit == false)
                     {
                         playerMovements.PLAYERSTATUS.score += 15;
-                        Debug.Log("Score +15 : Done : Currently score is " + playerMovements.PLAYERSTATUS.score);
+                        // Debug.Log("Score +15 : Done : Currently score is " + playerMovements.PLAYERSTATUS.score);
                     }
                     else
                     {
-                        // If can't hit target object, score / 3
+                        //If can't hit target object, score / 3
                         var score = playerMovements.PLAYERSTATUS.score;
                         score /= 3;
                         //playerMovements.PLAYERSTATUS.score = (int)score;

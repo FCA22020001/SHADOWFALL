@@ -12,29 +12,33 @@
 using System;
 using UnityEngine;
 
-public class PlayerStatus
+namespace SHADOWFALL
 {
-    private float _score;
-
-    public bool mouseLock {get; set;} = false;
-    public bool keyLock {get; set;} = false;
-
-    public bool isGrounded {get; set;} = false;
-    public bool onLeftWall {get; set;} = false;
-    public bool onRightWall {get; set;} = false;
-
-    public bool running {get; set;} = false;
-    public bool doubleJump {get; set;} = false;
-
-    public float score
+    public class PlayerStatus
     {
-        get => _score;
-        set
-        {
-            _score = value;
-            if(_score <= 0) _score = 0;
-        }
-    }
+        private float _score;
 
-    public string ScoreText => score.ToString("0") + "point";
+        public bool mouseLock {get; set;} = false;
+        public bool keyLock {get; set;} = false;
+
+        public bool isGrounded {get; set;} = false;
+        public bool onLeftWall {get; set;} = false;
+        public bool onRightWall {get; set;} = false;
+
+        public bool running {get; set;} = false;
+        public bool doubleJump {get; set;} = false;
+
+        public float score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                if(_score <= 0) _score = 0;
+            }
+        }
+
+        public string ScoreText => score.ToString("0") + "point";
+    }
 }
+
